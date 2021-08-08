@@ -1,0 +1,17 @@
+{
+    "name": "themainframe/mvc",
+    "authors": [
+        {
+            "name": "Arshaluys Kirakosyan",
+            "email": "arshaluyskirakosyan7@gmail.com"
+        }
+    ],
+    "require": {
+
+    },
+    "autoload": {
+        "psr-0": {
+            "": ["controller/", "model/", "./"]
+        }
+    }
+}

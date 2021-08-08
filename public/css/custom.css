@@ -1,0 +1,8 @@
+.notes {
+	position: absolute ;
+	width: 500px;
+	max-height: 300px;
+    left:10px;
+    bottom: 10px;
+    z-index: 100000;
+}
