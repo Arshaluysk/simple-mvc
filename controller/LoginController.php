@@ -4,16 +4,13 @@ include "BaseController.php";
 
 class LoginController extends BaseController {
 
-    function __construct() {
+	public function index () {
 
         if (isset($_SESSION['auth']) && $_SESSION['auth']->type == User::USER) { 
             App::redirect("task");
         } else if (isset($_SESSION['auth']) && $_SESSION['auth']->type == User::ADMIN) {
             App::redirect("admin-task");
         }
-    }
-
-	public function index () {
 
         $this->view('auth/login');
     }

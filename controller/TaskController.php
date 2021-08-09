@@ -58,7 +58,7 @@ class TaskController extends BaseController{
         } else {
 
             $user = User::select('user.id')
-                ->where('id','=', $user_id)->get();
+                ->where('id','=', $data['user_id'])->get();
 
             if (!is_null($user)) {
 
