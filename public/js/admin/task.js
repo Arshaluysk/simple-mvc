@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+	let url = $('#url').val();
 	let data = {page: 1,sort: 'id', action: 0};
 
 	$(document).on('click','.page-link', function(e){
@@ -47,7 +48,7 @@ $(document).ready(function() {
 		let _this = this;
 
 		$.ajax({
-			url: 'http://localhost/mvc/task-edit',
+			url: `${url}task-status`,
 			type: 'POST',
 			data: {id: id},
 			dataType: "json",
@@ -78,7 +79,7 @@ $(document).ready(function() {
 
 function getList(data) {
 	$.ajax({
-		url: 'http://localhost/mvc/task-list',
+		url: `${url}task-list`,
 		type: 'POST',
 		data: data,
 		dataType: "json",
@@ -100,6 +101,7 @@ function getList(data) {
 									<label class="custom-control-label" for="switch${(value.id)}">
 										<span class="badge ${(value.status == 0) ? 'badge-success' : 'badge-danger'}">${(value.status == 0) ? 'To Do' : 'Done'}</span>
 								    </label>
+								    <a href="${url}task-edit?id=${value.id}" class="btn btn-success">Edit</a>
 								</div>
 							</td>
 						</tr>`

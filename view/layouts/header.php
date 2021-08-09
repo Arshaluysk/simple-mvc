@@ -22,6 +22,7 @@
 
 </head>
 <body>
+    <input type="hidden" id="url" value="<?= App::route('') ?>">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">

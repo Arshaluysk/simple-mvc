@@ -11,5 +11,7 @@ $routes = [
     'task-list' => array('controller' => 'TaskController', 'method'=> 'getlist', 'req'=> 'POST' ),
     'task-create' => array('controller' => 'TaskController', 'method'=> 'create', 'req'=> 'GET' ),
     'task-store' => array('controller' => 'TaskController', 'method'=> 'store', 'req'=> 'POST' ),
-    'task-edit' => array('directory'=> 'admin','controller' => 'TaskController', 'method'=> 'edit', 'req'=> 'POST' )
+    'task-status' => array('directory'=> 'admin','controller' => 'TaskController', 'method'=> 'status', 'req'=> 'POST' ),
+    'task-edit' => array('directory'=> 'admin','controller' => 'TaskController', 'method'=> 'edit', 'req'=> 'GET' ),
+    'task-update' => array('directory'=> 'admin','controller' => 'TaskController', 'method'=> 'update', 'req'=> 'POST' ),
 ];

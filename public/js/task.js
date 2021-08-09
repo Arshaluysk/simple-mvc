@@ -43,7 +43,7 @@ $(document).ready(function() {
 
 function getList(data) {
 	$.ajax({
-		url: 'http://localhost/mvc/task-list',
+		url: `${url}task-list`,
 		type: 'POST',
 		data: data,
 		dataType: "json",

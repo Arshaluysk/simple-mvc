@@ -31,7 +31,7 @@
 									<select name="user" id="user" class="form-control <?= (isset($errors['user'])) ? 'is-invalid' : ''?>" required>
 										<option value="">Select a User</option>
 										<?php foreach($data['users'] as $user):?>
-											<option selected="<?= (isset($old['description'])) ? 'selected' : '' ?>" value="<?= $user['id'] ?>"><?= $user['name'] ?></option>
+											<option <?= (isset($old['user'])) ? 'selected' : '' ?> value="<?= $user['id'] ?>"><?= $user['name'] ?></option>
 										<?php endforeach ?>
 									</select>
 

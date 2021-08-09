@@ -4,7 +4,7 @@ require_once 'routes.php';
 
     class App {
 
-        public static $project = 'mvc';
+        public static $project = 'simple-mvc';
         public $routes = null;
 
         function __construct($routes){
@@ -55,10 +55,12 @@ require_once 'routes.php';
             }
         }
 
-        public static function redirect ($url) {
+        public static function redirect (string $url) {
+
             header("location:".self::url().'/'.$url);die;
         }
-        public static function route ($url) {
+        public static function route (string $url) {
+
             return self::url().'/'.$url;
         }
     }

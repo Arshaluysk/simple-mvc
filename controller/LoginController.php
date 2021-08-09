@@ -4,6 +4,15 @@ include "BaseController.php";
 
 class LoginController extends BaseController {
 
+    function __construct() {
+
+        if (isset($_SESSION['auth']) && $_SESSION['auth']->type == User::USER) { 
+            App::redirect("task");
+        } else if (isset($_SESSION['auth']) && $_SESSION['auth']->type == User::ADMIN) {
+            App::redirect("admin-task");
+        }
+    }
+
 	public function index () {
 
         $this->view('auth/login');
@@ -38,9 +47,14 @@ class LoginController extends BaseController {
 					->where('email','=', $data['email'])->first();
 
 					$_SESSION['auth'] = $auth;
-
 					$_SESSION['notes'][] = array('type'=>'success','message'=>'You are loged in !');
-		            App::redirect("task");
+
+					if ($auth->type == App::ADMIN) {
+			            App::redirect("admin-task");
+					}
+			        
+			        App::redirect("task");
+
 				} else {
 					$_SESSION['notes'][] = array('type'=>'danger','message'=>'wrong password !');
 		            App::redirect("login");

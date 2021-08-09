@@ -2,8 +2,10 @@
 
 class User extends AbstractModel {
 
-    protected static $table = 'user';
+    const ADMIN = 1;
+    const USER = 0;
 
+    protected static $table = 'user';
 
     public static function create(array $data) {
 

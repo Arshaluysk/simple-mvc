@@ -19,4 +19,11 @@ class Task extends AbstractModel {
         $stmt->bind_param("si", $status,$id);
         return $stmt->execute();
     }
+
+    public static function update(array $data, int $id) {
+
+        $stmt = self::$db->prepare("UPDATE ".static::$table." SET status = ?, description = ? WHERE id = ?");
+        $stmt->bind_param("sss", $data['status'], $data['description'], $id);
+        return $stmt->execute();
+    }
 }

@@ -4,6 +4,15 @@ include "BaseController.php";
 
 class RegisterController extends BaseController {
 
+    function __construct() {
+
+        if (isset($_SESSION['auth']) && $_SESSION['auth']->type == App::USER) { 
+            App::redirect("task");
+        } else if (isset($_SESSION['auth']) && $_SESSION['auth']->type == App::ADMIN) {
+            App::redirect("admin-task");
+        }
+    }
+
 	public function index () {
 
         $this->view('auth/register');

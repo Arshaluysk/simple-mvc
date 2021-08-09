@@ -5,7 +5,7 @@
 				<div class="card">
 					<div class="card-header d-flex ">
 						Task List
-						<a href="<?= App::redirect('task-create') ?>" class="btn btn-outline-primary ml-4">Create</a>
+						<a href="<?= App::route('task-create') ?>" class="btn btn-outline-primary ml-4">Create</a>
 					</div>
 					<div class="card-body row">
 						<table class="table table-striped tast-list">
@@ -25,8 +25,8 @@
 									<td><?= $task['name']; ?></td>
 									<td><?= $task['email']; ?></td>
 									<td><?= $task['description']; ?></td>
-									<td>
-										<div class="custom-control custom-switch">
+									<td class="d-flex align-items-center">
+										<div class="custom-control custom-switch mr-1">
 											<input type="checkbox" class="custom-control-input switch_status" id="switch<?= $task['id']; ?>" data-id="<?= $task['id']; ?>">
 											<label class="custom-control-label" for="switch<?= $task['id']; ?>">
 												<?php if($task['status'] == 0): ?>
@@ -36,6 +36,7 @@
 												<?php endif ?>
 										    </label>
 										</div>
+										<a href="<?= App::route('task-edit?id='.$task['id']) ?>" class="btn btn-success">Edit</a>
 									</td>
 								</tr>
 							<?php endforeach ?>
