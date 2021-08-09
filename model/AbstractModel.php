@@ -57,7 +57,6 @@ abstract class AbstractModel {
     }
 
     public static function get() {
-
         return static::$db->query(static::$query)->fetch_all(MYSQLI_ASSOC);
     }    
     

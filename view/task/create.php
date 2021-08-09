@@ -10,6 +10,36 @@
 					<div class="card-body">
 						<form action="<?= App::route('task-store') ?>" method="post" enctype="multipart/form-data">
 							<div class="form-group row">
+								<label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
+								<div class="col-md-6">
+									<input id="name" type="text" class="form-control <?= (isset($errors['name'])) ? 'is-invalid' : ''?>" name="name" required 
+									value="<?= (isset($old['name'])) ? $old['name'] : '' ?>" >
+									<?php if(isset($errors['name'] )): ?>
+										<?php foreach($errors['name'] as $error):?>
+											<span class="invalid-feedback" role="alert">
+		                                        <strong><?= $error ?> </strong>
+		                                    </span>
+										<?php endforeach ?>
+									<?php endif ?>
+								</div>
+							</div>							
+
+							<div class="form-group row">
+								<label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
+								<div class="col-md-6">
+									<input id="email" type="text" class="form-control <?= (isset($errors['email'])) ? 'is-invalid' : ''?>" name="email" required 
+									value="<?= (isset($old['email'])) ? $old['email'] : '' ?>" >
+									<?php if(isset($errors['email'] )): ?>
+										<?php foreach($errors['email'] as $error):?>
+											<span class="invalid-feedback" role="alert">
+		                                        <strong><?= $error ?> </strong>
+		                                    </span>
+										<?php endforeach ?>
+									<?php endif ?>
+								</div>
+							</div>							
+
+							<div class="form-group row">
 								<label for="name" class="col-md-4 col-form-label text-md-right">Description</label>
 								<div class="col-md-6">
 									<input id="description" type="text" class="form-control <?= (isset($errors['description'])) ? 'is-invalid' : ''?>" name="description" required 
@@ -24,26 +54,6 @@
 								</div>
 							</div>
 
-							<div class="form-group row">
-								<label for="category" class="col-md-4 col-form-label text-md-right">User</label>
-
-								<div class="col-md-6">
-									<select name="user" id="user" class="form-control <?= (isset($errors['user'])) ? 'is-invalid' : ''?>" required>
-										<option value="">Select a User</option>
-										<?php foreach($data['users'] as $user):?>
-											<option <?= (isset($old['user'])) ? 'selected' : '' ?> value="<?= $user['id'] ?>"><?= $user['name'] ?></option>
-										<?php endforeach ?>
-									</select>
-
-									<?php if(isset($errors['user'] )): ?>
-										<?php foreach($errors['user'] as $error):?>
-											<span class="invalid-feedback" role="alert">
-		                                        <strong><?= $error ?> </strong>
-		                                    </span>
-										<?php endforeach ?>
-									<?php endif ?>
-								</div>
-							</div>
 							<div class="form-group row mb-0">
 								<div class="col-md-8 offset-md-4">
 									<button type="submit" class="btn btn-primary">

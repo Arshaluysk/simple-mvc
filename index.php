@@ -1,7 +1,6 @@
 <?php
 require_once 'vendor/autoload.php';
 require_once 'routes.php';
-
     class App {
 
         public static $project = 'simple-mvc';
@@ -16,8 +15,10 @@ require_once 'routes.php';
             if (array_key_exists($http[1], $this->routes) && $this->routes[$http[1]]['req'] == $_SERVER['REQUEST_METHOD']) {
 
                 if (array_key_exists('directory',$this->routes[$http[1]])) {
+
                     $path = "./controller/".$this->routes[$http[1]]['directory'].'/'.$this->routes[$http[1]]['controller'].".php";
                 } else{
+
                     $path = "./controller/".$this->routes[$http[1]]['controller'].".php";
                 }
 
@@ -59,6 +60,7 @@ require_once 'routes.php';
 
             header("location:".self::url().'/'.$url);die;
         }
+
         public static function route (string $url) {
 
             return self::url().'/'.$url;

@@ -6,8 +6,7 @@ class TaskController extends BaseController{
 
     public function index () {
 
-        $tasks = Task::select('task.* , user.name, user.email')
-                    ->join('user','id','user_id')
+        $tasks = Task::select('task.*')
                     ->sort('id',0)
                     ->limit()->get();
 
@@ -26,8 +25,7 @@ class TaskController extends BaseController{
         $to = $page*3;
         $from = $to-3;
 
-        $tasks = Task::select('task.* , user.name, user.email')
-                    ->join('user','id','user_id')
+        $tasks = Task::select('task.*')
                     ->sort($sort,$action)
                     ->limit($from,$to)->get();
 
@@ -44,11 +42,13 @@ class TaskController extends BaseController{
 
     public function store () {
 
-        $data['user_id'] = (int)$_POST['user'];
+        $data['name'] = $_POST['name'];
+        $data['email'] = $_POST['email'];
         $data['description'] = $_POST['description'];
 
         $vali = Validator::make($data, [
-            'user' => ['required', 'number'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
             'description' => ['required','string','min:4','max:255'],
         ]);
 
@@ -57,27 +57,22 @@ class TaskController extends BaseController{
             App::redirect("task-create");
         } else {
 
-            $user = User::select('user.id')
-                ->where('id','=', $data['user_id'])->get();
+            $task = new Task();
+            $result = $task->create($data);
 
-            if (!is_null($user)) {
+            if ($result) {
+                $_SESSION['notes'][] = array('type'=>'success','message'=>'Task created Successfully !');
 
-                $task = new Task();
-                $result = $task->create($data);
-
-                if ($result) {
-                    $_SESSION['notes'][] = array('type'=>'success','message'=>'Task created Successfully !');
-                    App::redirect("task");
+                if ($_SESSION['auth']->type == User::ADMIN) {
+                    App::redirect("admin-task");
                 }
-
-                $_SESSION['notes'][] = array('type'=>'danger','message'=>'Someting went wrong !');
-                App::redirect("task-create");
-
-            } else {
-
-                $_SESSION['notes'][] = array('type'=>'danger','message'=>'user not found !');
-                App::redirect("task-create");
+                
+                App::redirect("task");
             }
+
+            $_SESSION['notes'][] = array('type'=>'danger','message'=>'Someting went wrong !');
+            App::redirect("task-create");
+
         }
     }
 }

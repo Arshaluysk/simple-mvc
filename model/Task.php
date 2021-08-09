@@ -7,8 +7,8 @@ class Task extends AbstractModel {
 
     public static function create(array $data) {
 
-        $stmt = self::$db->prepare("INSERT INTO ".self::$table." (user_id, description) VALUES (?, ?)");
-        $stmt->bind_param("ss", $data['user_id'], $data['description']);
+        $stmt = self::$db->prepare("INSERT INTO ".self::$table." (name, email, description) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $data['name'], $data['email'], $data['description']);
 
         return $stmt->execute();
     }

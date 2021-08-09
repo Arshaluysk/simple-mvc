@@ -46,7 +46,7 @@ class LoginController extends BaseController {
 					$_SESSION['auth'] = $auth;
 					$_SESSION['notes'][] = array('type'=>'success','message'=>'You are loged in !');
 
-					if ($auth->type == App::ADMIN) {
+					if ($auth->type == User::ADMIN) {
 			            App::redirect("admin-task");
 					}
 			        

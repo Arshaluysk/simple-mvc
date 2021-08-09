@@ -13,8 +13,7 @@ class TaskController extends BaseController{
 
     public function index (array $params=[]) {
 
-        $tasks = Task::select('task.* , user.name, user.email')
-                    ->join('user','id','user_id')
+        $tasks = Task::select('task.*')
                     ->sort('id',0)
                     ->limit()->get();
 
